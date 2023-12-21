@@ -46,17 +46,17 @@ string Duration::to_string() const {
         return ss.str();
     }
     if (day > 0){
-        ss << "D" << day;
+        ss << day << "D"; 
     }
     ss << "T";
     if(hour > 0){
-        ss << "H" << hour;
+        ss << hour << "H";
     }
     if (minute > 0){
-        ss << "M" << minute;
+        ss << minute << "M";
     }
     if (second > 0){
-        ss << "S" << second;
+        ss << second << "S";
     }
     return ss.str();
 }
