@@ -10,28 +10,16 @@ Duration :: Duration(){
     this->second = 0;
     this->minute = 0;
     this->hour = 0;
+    this->day = 0;
 }
 
 Duration :: Duration(int s){
     this->total_secs = s;
-    int temp_s = s;
-    int temp_m = 0;
-    int temp_h = 0;
-    int temp_d = 0;
-    if (temp_s >= 60){
-        second = temp_s%60;
-        temp_m = temp_s/60;
-        if (temp_m >= 60){
-            temp_h = temp_m % 60;
-            minute = temp_m/60;
-            if(temp_h >= 24){
-                hour = temp_h%24;
-                day = temp_h/24;
-            }
-        }
-    }
+    this->second = s%60;
+    this->minute = (s%3600) / 60;
+    this->hour = (s % 86400) / 3600;
+    this->day = (s/86400);
 }
-
 
 int Duration::days(){
     return day;
@@ -57,7 +45,19 @@ string Duration::to_string() const {
         ss << "T0S";
         return ss.str();
     }
-    ss << day << "D" << hour << "H" << minute << "M" << second << "S";
+    if (day > 0){
+        ss << "D" << day;
+    }
+    ss << "T";
+    if(hour > 0){
+        ss << "H" << hour;
+    }
+    if (minute > 0){
+        ss << "M" << minute;
+    }
+    if (second > 0){
+        ss << "S" << second;
+    }
     return ss.str();
 }
 
