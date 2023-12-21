@@ -41,7 +41,7 @@ int Duration::seconds(){
 string Duration::to_string() const {
     stringstream ss;
     ss << "P";
-    if (second <= 0) {
+    if (total_secs <= 0) {
         ss << "T0S";
         return ss.str();
     }
